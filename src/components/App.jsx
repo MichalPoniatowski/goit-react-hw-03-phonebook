@@ -20,12 +20,8 @@ export class App extends Component {
     this.state.contacts = parsedContacts || [];
   }
 
-  // FUNKCJA DO OBSŁUGI INPUTA W ZALEŻNOŚCI OD NAME NA KTÓYM WYWOŁANA
-
   addNewContact = event => {
     event.preventDefault();
-
-    // TWORZENIE NOWEGO KONTAKTU
 
     const nameValue = event.target.elements.name.value;
     const numberValue = event.target.elements.number.value;
@@ -56,8 +52,6 @@ export class App extends Component {
       return;
     }
 
-    // SPRAWDZENIE CZY KONTAKT JUŻ ISTNIEJE
-
     if (
       this.state.contacts.some(
         contact =>
@@ -74,15 +68,11 @@ export class App extends Component {
     }
   };
 
-  // USUWANIE KONTAKTU
-
   deleteContact = idToDelete => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== idToDelete),
     }));
   };
-
-  // WYŚWIETLANIE KONTAKTÓW
 
   setStateInput = event => {
     const { name, value } = event.target;
@@ -121,10 +111,7 @@ export class App extends Component {
           contacts={this.state.contacts}
         />
         <ContactList list={this.renderContacts()}>
-          <Filter
-            filteredContacts={this.filterContacts}
-            // handleInput={this.setStateInput}
-          />
+          <Filter filteredContacts={this.filterContacts} />
         </ContactList>
       </div>
     );
